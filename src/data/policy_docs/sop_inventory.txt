@@ -1,0 +1,53 @@
+Standard Operating Procedure: Inventory Management & Replenishment
+Document: SOP-INV-003 | Revision: 5 | Effective: March 2026
+
+PURPOSE
+Define the process for monitoring inventory levels, triggering replenishment, and managing stockout risk across CPG Enterprise warehouses.
+
+SCOPE
+Applies to all warehouse operations: WH-EMEA-01, WH-EMEA-02, WH-AMER-01, WH-AMER-02, WH-APAC-01, WH-APAC-02
+
+KEY METRICS AND THRESHOLDS
+Reorder Point (ROP): Defined per SKU in inventory master. Triggers procurement review when stock_level falls to or below ROP.
+Safety Stock: Minimum 30-day supply for standard SKUs; 90-day for baby/pharmaceutical.
+Stockout Risk Zone: stock_level < 50% of ROP — immediate escalation required.
+Critical Stockout: stock_level = 0 — P1 incident, customer service notification required within 2 hours.
+
+REPLENISHMENT WORKFLOW
+Step 1: AI system monitors stock levels every 4 hours via SAP inventory feed.
+Step 2: When stock_level <= ROP, AI demand forecasting agent generates 90-day forward demand estimate.
+Step 3: AI procurement agent selects optimal vendor and calculates order quantity.
+Step 4: AI policy approval agent evaluates order against current thresholds.
+Step 5: Auto-approved orders create PO in SAP automatically.
+Step 6: Human-review orders route to Procurement Manager queue (SLA: 24 hours).
+Step 7: All orders logged with AI trace_id for auditability.
+
+DEMAND FORECASTING INPUTS
+- 18 months of weekly shipment history per SKU
+- Regional promotion calendar
+- Seasonal adjustment factors (Q4 holiday +35%, summer +20% for beverages)
+- Competitor stockout flags (when available)
+- Economic indicator adjustments
+
+ESCALATION MATRIX
+Level 1 (Procurement Manager): stock_level < ROP for any SKU
+Level 2 (Supply Chain Director): stock_level < 50% ROP for >5 SKUs in same warehouse
+Level 3 (VP Operations): Warehouse-wide shortage affecting >20 SKUs
+Level 4 (C-Suite): Customer-facing stockout with retailer penalty exposure
+
+KPI TARGETS
+Fill Rate: >= 98.5% (cases shipped / cases ordered)
+Forecast Accuracy (MAPE): <= 8% for beverages, <= 12% for snacks
+Inventory Turnover: >= 8x per year for FMCG, >= 4x for household
+Days of Supply: 45-60 days standard, 30 days maximum for perishables
+Stockout Rate: < 0.5% of SKU-warehouse combinations at any time
+
+AI GOVERNANCE REQUIREMENTS
+All AI recommendations must be logged with:
+- model_version
+- confidence_score
+- top_reasons (min 3)
+- trace_id (linked to OTel trace)
+- human_review_required flag
+Human acceptance rate of AI recommendations is tracked monthly.
+Target: >85% acceptance rate; below 70% triggers model review.

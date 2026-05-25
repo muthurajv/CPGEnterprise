@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  # ── Application ────────────────────────────────────────────────
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../.env
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
+      OTEL_SERVICE_NAME: cpg-supply-chain
+      PYTHONPATH: /app
+    depends_on:
+      - otel-collector
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  # ── OpenTelemetry Collector ─────────────────────────────────────
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4317:4317"   # OTLP gRPC
+      - "4318:4318"   # OTLP HTTP
+      - "8888:8888"   # Collector internal metrics
+    environment:
+      # Grafana Cloud credentials — set these in .env
+      GRAFANA_CLOUD_TRACES_URL: ${GRAFANA_CLOUD_TRACES_URL}
+      GRAFANA_CLOUD_METRICS_URL: ${GRAFANA_CLOUD_METRICS_URL}
+      GRAFANA_CLOUD_LOGS_URL: ${GRAFANA_CLOUD_LOGS_URL}
+      # Basic auth: base64("<instance_id>:<api_key>")
+      GRAFANA_CLOUD_AUTH: ${GRAFANA_CLOUD_AUTH}
+    restart: unless-stopped

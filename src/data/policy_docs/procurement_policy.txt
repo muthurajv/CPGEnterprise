@@ -1,0 +1,51 @@
+CPG Enterprise Procurement Policy — Version 3.2
+Effective Date: January 1, 2026
+
+1. SCOPE
+This policy governs all procurement activities for finished goods, raw materials, packaging, and indirect supplies across all CPG Enterprise regions (EMEA, AMER, APAC).
+
+2. APPROVAL THRESHOLDS
+2.1 Purchase Orders
+- Up to $10,000: Auto-approved by AI procurement system
+- $10,001 to $50,000: Requires Procurement Manager approval within 24 hours
+- $50,001 to $250,000: Requires VP Supply Chain + Finance Director approval within 48 hours
+- Over $250,000: Requires C-Suite approval (CFO + COO) within 5 business days
+
+2.2 Emergency Procurement
+In cases of stockout risk (stock_level < 20% of reorder_point), approval thresholds are doubled and turnaround time is halved.
+
+3. VENDOR SELECTION CRITERIA
+3.1 Approved Vendor List
+All vendors must appear on the Approved Vendor List (AVL). New vendors require a 6-week qualification process.
+
+3.2 Selection Priorities (in order)
+a) Reliability score >= 0.90 required
+b) Lead time must not exceed category maximum (see Appendix A)
+c) Unit cost should be within 15% of category benchmark
+d) Preference for vendors with regional warehouse proximity
+e) ESG compliance score required for new contracts from Q3 2026
+
+4. ORDER QUANTITY GUIDELINES
+4.1 Standard Orders
+Recommended order quantity = (reorder_point × 2.5) - current_stock_level
+Minimum order: respect vendor minimum order quantity (MOQ)
+Maximum single order: 5,000 cases unless C-Suite approval obtained
+
+4.2 Risk-Based Overrides
+High-risk SKUs (governance.risk_tier = high): order up to reorder_point × 3.5
+Baby and pharmaceutical categories: maintain 90-day safety stock at all times
+
+5. PROHIBITED ACTIONS
+- Split orders to circumvent approval thresholds (order splitting) is a policy violation
+- Sole-source procurement above $25,000 requires documented justification
+- Backdating purchase orders is prohibited and subject to disciplinary action
+
+6. SUSTAINABILITY REQUIREMENTS
+From Q3 2026, all new supplier contracts must include:
+- Carbon footprint disclosure
+- Recyclable or reduced packaging commitment
+- Living wage certification for manufacturing workforce
+
+7. AUDIT AND COMPLIANCE
+All AI-generated procurement recommendations are logged with full trace IDs.
+Quarterly audits review AI recommendation acceptance rates and outcome accuracy.

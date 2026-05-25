@@ -1,0 +1,39 @@
+CPG Enterprise Approval Thresholds — Quick Reference
+Document ID: SCM-THRESH-2026-v2
+
+AUTO-APPROVAL RULES (AI system may approve without human intervention):
+- Order value <= $10,000
+- Vendor on Approved Vendor List (AVL)
+- Vendor reliability_score >= 0.90
+- Lead time within category standard
+- SKU category risk_tier = "low" or "medium"
+- No history of policy violations in past 90 days
+
+HUMAN REVIEW TRIGGERS (route to Procurement Manager):
+- Order value $10,001 - $50,000
+- New vendor not yet on AVL (requires qualification)
+- Vendor reliability_score 0.80 - 0.89
+- Order quantity > 3x standard reorder quantity
+- Cross-region procurement (purchasing from non-standard region vendor)
+- SKU category risk_tier = "high" AND order value > $5,000
+- Baby / pharmaceutical category: always human review above $2,000
+- AI confidence score < 0.75 for recommendation
+
+DENIAL TRIGGERS (AI system denies without human escalation):
+- Vendor NOT on Approved Vendor List AND no emergency justification
+- Order value would exceed quarterly procurement budget cap
+- Vendor has active quality dispute or supply disruption flag
+- Duplicate order detected (same SKU, vendor, quantity within 48 hours)
+- Order splitting detected (multiple orders to circumvent threshold)
+
+ESCALATION TO VP/C-SUITE:
+- Order value $50,001 - $250,000: VP Supply Chain + Finance Director
+- Order value > $250,000: CFO + COO mandatory sign-off
+- Any order involving a new sole-source vendor above $25,000
+- Emergency procurement declared at regional level
+
+RISK TIER DEFINITIONS:
+- low: Non-critical FMCG, household, personal care
+- medium: Core beverages, snacks, dairy, canned goods
+- high: Baby food/formula, medical-adjacent, items in active shortage
+- critical: Items with active stockout + retailer penalty exposure

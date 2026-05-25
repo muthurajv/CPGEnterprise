@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cpg-supply-chain-svc
+  namespace: cpg-observability
+  labels:
+    app: cpg-supply-chain
+spec:
+  selector:
+    app: cpg-supply-chain
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otel-collector-svc
+  namespace: cpg-observability
+  labels:
+    app: otel-collector
+spec:
+  selector:
+    app: otel-collector
+  ports:
+    - name: otlp-grpc
+      protocol: TCP
+      port: 4317
+      targetPort: 4317
+    - name: otlp-http
+      protocol: TCP
+      port: 4318
+      targetPort: 4318
+  type: ClusterIP

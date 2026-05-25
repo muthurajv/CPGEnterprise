@@ -1,0 +1,122 @@
+[
+  {
+    "vendor_id": "VND-001",
+    "name": "GlobalBev Supplies Ltd",
+    "categories": ["beverages", "juices", "water"],
+    "skus_supplied": ["SKU-001", "SKU-002", "SKU-003", "SKU-004", "SKU-007", "SKU-009", "SKU-010"],
+    "unit_cost_usd": {"SKU-001": 14.50, "SKU-002": 12.80, "SKU-003": 14.00, "SKU-004": 18.20, "SKU-007": 9.50, "SKU-009": 11.00, "SKU-010": 16.00},
+    "lead_time_days": 7,
+    "min_order_qty": 100,
+    "reliability_score": 0.97,
+    "region": "EMEA",
+    "contact": "orders@globalbev.com"
+  },
+  {
+    "vendor_id": "VND-002",
+    "name": "PacificDrinks Co",
+    "categories": ["beverages", "sports", "energy"],
+    "skus_supplied": ["SKU-005", "SKU-006", "SKU-008"],
+    "unit_cost_usd": {"SKU-005": 22.00, "SKU-006": 28.50, "SKU-008": 13.00},
+    "lead_time_days": 10,
+    "min_order_qty": 50,
+    "reliability_score": 0.93,
+    "region": "APAC",
+    "contact": "supply@pacificdrinks.com"
+  },
+  {
+    "vendor_id": "VND-003",
+    "name": "SnackWorld International",
+    "categories": ["snacks"],
+    "skus_supplied": ["SKU-011", "SKU-012", "SKU-013", "SKU-014", "SKU-015"],
+    "unit_cost_usd": {"SKU-011": 32.00, "SKU-012": 18.00, "SKU-013": 15.50, "SKU-014": 27.00, "SKU-015": 12.00},
+    "lead_time_days": 5,
+    "min_order_qty": 200,
+    "reliability_score": 0.98,
+    "region": "AMER",
+    "contact": "orders@snackworld.com"
+  },
+  {
+    "vendor_id": "VND-004",
+    "name": "DairyFresh Farms",
+    "categories": ["dairy"],
+    "skus_supplied": ["SKU-021", "SKU-022", "SKU-023", "SKU-024"],
+    "unit_cost_usd": {"SKU-021": 11.00, "SKU-022": 19.50, "SKU-023": 24.00, "SKU-024": 16.00},
+    "lead_time_days": 3,
+    "min_order_qty": 100,
+    "reliability_score": 0.95,
+    "region": "EMEA",
+    "contact": "supply@dairyfresh.com"
+  },
+  {
+    "vendor_id": "VND-005",
+    "name": "Mediterranean Pantry",
+    "categories": ["oils", "condiments", "dry_goods"],
+    "skus_supplied": ["SKU-025", "SKU-026", "SKU-027", "SKU-028", "SKU-029", "SKU-030"],
+    "unit_cost_usd": {"SKU-025": 38.00, "SKU-026": 21.00, "SKU-027": 9.00, "SKU-028": 14.00, "SKU-029": 10.50, "SKU-030": 11.00},
+    "lead_time_days": 8,
+    "min_order_qty": 150,
+    "reliability_score": 0.96,
+    "region": "EMEA",
+    "contact": "trade@medpantry.com"
+  },
+  {
+    "vendor_id": "VND-006",
+    "name": "AmeriSauce Corp",
+    "categories": ["condiments", "soups"],
+    "skus_supplied": ["SKU-031", "SKU-032", "SKU-033", "SKU-034", "SKU-035", "SKU-036"],
+    "unit_cost_usd": {"SKU-031": 22.00, "SKU-032": 14.00, "SKU-033": 18.00, "SKU-034": 16.50, "SKU-035": 15.00, "SKU-036": 12.00},
+    "lead_time_days": 6,
+    "min_order_qty": 100,
+    "reliability_score": 0.94,
+    "region": "AMER",
+    "contact": "orders@amerisauce.com"
+  },
+  {
+    "vendor_id": "VND-007",
+    "name": "SweetTreat Confections",
+    "categories": ["confectionery"],
+    "skus_supplied": ["SKU-037", "SKU-038", "SKU-039", "SKU-040"],
+    "unit_cost_usd": {"SKU-037": 42.00, "SKU-038": 35.00, "SKU-039": 28.00, "SKU-040": 22.00},
+    "lead_time_days": 9,
+    "min_order_qty": 100,
+    "reliability_score": 0.92,
+    "region": "EMEA",
+    "contact": "supply@sweettreat.com"
+  },
+  {
+    "vendor_id": "VND-008",
+    "name": "FrozenFoods Global",
+    "categories": ["frozen"],
+    "skus_supplied": ["SKU-041", "SKU-042", "SKU-043", "SKU-044"],
+    "unit_cost_usd": {"SKU-041": 29.00, "SKU-042": 18.50, "SKU-043": 34.00, "SKU-044": 26.00},
+    "lead_time_days": 4,
+    "min_order_qty": 50,
+    "reliability_score": 0.91,
+    "region": "EMEA",
+    "contact": "orders@frozenfoodsglobal.com"
+  },
+  {
+    "vendor_id": "VND-009",
+    "name": "NutriCare Baby",
+    "categories": ["baby"],
+    "skus_supplied": ["SKU-045", "SKU-046"],
+    "unit_cost_usd": {"SKU-045": 24.00, "SKU-046": 38.00},
+    "lead_time_days": 5,
+    "min_order_qty": 50,
+    "reliability_score": 0.99,
+    "region": "APAC",
+    "contact": "orders@nutricaer.com"
+  },
+  {
+    "vendor_id": "VND-010",
+    "name": "HomeEssentials Wholesale",
+    "categories": ["household", "personal_care"],
+    "skus_supplied": ["SKU-047", "SKU-048", "SKU-049", "SKU-050"],
+    "unit_cost_usd": {"SKU-047": 19.50, "SKU-048": 14.00, "SKU-049": 22.00, "SKU-050": 26.00},
+    "lead_time_days": 7,
+    "min_order_qty": 100,
+    "reliability_score": 0.96,
+    "region": "AMER",
+    "contact": "trade@homeessentials.com"
+  }
+]
