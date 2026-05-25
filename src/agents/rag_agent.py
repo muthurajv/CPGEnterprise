@@ -5,7 +5,7 @@ from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_openai import AzureChatOpenAI
 
 from src.agents.state import SupplyChainState
-from src.observability.instrumentation import agent_span
+from src.observability.instrumentation import agent_span, record_token_usage
 from src.tools.vector_store import get_retriever
 
 _SYSTEM_PROMPT = """You are the CPG policy and knowledge specialist.
@@ -52,6 +52,8 @@ def rag_node(state: SupplyChainState) -> dict:
 
         result = response.content
         span.set_attribute("rag.response_length", len(result))
+        usage = getattr(response, "usage_metadata", None) or {}
+        record_token_usage(usage.get("input_tokens", 0), usage.get("output_tokens", 0), "rag")
 
     return {
         "agent_outputs": {**state.get("agent_outputs", {}), "rag": result},

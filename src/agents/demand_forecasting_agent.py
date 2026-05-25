@@ -8,7 +8,7 @@ from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_openai import AzureChatOpenAI
 
 from src.agents.state import SupplyChainState
-from src.observability.instrumentation import agent_span
+from src.observability.instrumentation import agent_span, record_token_usage
 
 _DATA_PATH = Path(__file__).parent.parent / "data" / "shipment_history.json"
 
@@ -91,6 +91,8 @@ def demand_forecasting_node(state: SupplyChainState) -> dict:
 
         result = response.content
         span.set_attribute("demand_forecasting.response_length", len(result))
+        usage = getattr(response, "usage_metadata", None) or {}
+        record_token_usage(usage.get("input_tokens", 0), usage.get("output_tokens", 0), "demand_forecasting")
 
     return {
         "agent_outputs": {**state.get("agent_outputs", {}), "demand_forecasting": result},

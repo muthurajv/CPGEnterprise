@@ -5,7 +5,7 @@ from langchain_core.messages import AIMessage
 from langchain_openai import AzureChatOpenAI
 
 from src.agents.state import SupplyChainState
-from src.observability.instrumentation import agent_span, set_cpg_span_attributes
+from src.observability.instrumentation import agent_span, record_token_usage, set_cpg_span_attributes
 from src.tools.sap_mock import get_all_low_stock, get_stock_level, get_warehouse_summary, search_inventory
 
 _SYSTEM_PROMPT = """You are the inventory specialist for a global CPG supply chain.
@@ -61,6 +61,8 @@ def inventory_node(state: SupplyChainState) -> dict:
 
         result = response.content
         span.set_attribute("inventory.response_length", len(result))
+        usage = getattr(response, "usage_metadata", None) or {}
+        record_token_usage(usage.get("input_tokens", 0), usage.get("output_tokens", 0), "inventory")
 
     return {
         "agent_outputs": {**state.get("agent_outputs", {}), "inventory": result},

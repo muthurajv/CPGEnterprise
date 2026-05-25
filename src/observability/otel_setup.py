@@ -79,8 +79,10 @@ def setup_telemetry() -> None:
 
     # Bridge Python standard logging → OTel logs
     from opentelemetry.sdk._logs import LoggingHandler
-    otel_handler = LoggingHandler(level=logging.DEBUG, logger_provider=log_provider)
-    logging.getLogger().addHandler(otel_handler)
+    root_logger = logging.getLogger()
+    root_logger.setLevel(logging.INFO)
+    otel_handler = LoggingHandler(level=logging.INFO, logger_provider=log_provider)
+    root_logger.addHandler(otel_handler)
 
     # Auto-instrument LangChain / LangGraph
     try:

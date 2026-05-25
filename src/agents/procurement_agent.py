@@ -7,7 +7,7 @@ from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_openai import AzureChatOpenAI
 
 from src.agents.state import SupplyChainState
-from src.observability.instrumentation import agent_span
+from src.observability.instrumentation import agent_span, record_token_usage
 from src.tools.sap_mock import get_stock_level
 
 _VENDOR_PATH = Path(__file__).parent.parent / "data" / "vendor_catalog.json"
@@ -70,6 +70,8 @@ def procurement_node(state: SupplyChainState) -> dict:
         result = response.content
         span.set_attribute("procurement.response_length", len(result))
         span.set_attribute("business.domain", "procurement")
+        usage = getattr(response, "usage_metadata", None) or {}
+        record_token_usage(usage.get("input_tokens", 0), usage.get("output_tokens", 0), "procurement")
 
     return {
         "agent_outputs": {**state.get("agent_outputs", {}), "procurement": result},
